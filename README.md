@@ -1,5 +1,7 @@
 # cent_2_pie
-A basic java GUI which takes in centrifuge reports (txt) and generates a pie chart (either pdf or png) for OTU frequency per taxonomic level. 
+A basic java GUI (utilising python script to do the 'heavy' lifting) which takes in centrifuge reports (txt) and generates a pie chart (either pdf or png) for OTU frequency per taxonomic level. Produces a pie chart similar to the one shown below:
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ## Prerequisites
 
