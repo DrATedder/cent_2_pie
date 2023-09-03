@@ -22,9 +22,14 @@ def create_pie_chart(data_dict, color_mapping, data_file, output_format):
     colors = [color_mapping[name] for name in names]
 
     fig, ax = plt.subplots(figsize=(8, 8))
-    ax.pie(values, labels=names, autopct='%1.1f%%', startangle=140, colors=colors)
+    wedges, texts, autotexts = ax.pie(values, labels=[''] * len(names), autopct='%1.1f%%', startangle=140, colors=colors)
     ax.axis('equal')
     ax.set_title(f'Distribution of OTUs in {os.path.basename(data_file).split("_")[0]}')
+
+    # Create a legend using the legend mapping dictionary
+    legend_elements = [plt.Line2D([0], [0], marker='o', color='w', label=label, markerfacecolor=color, markersize=10) for label, color in color_mapping.items()]
+    
+    ax.legend(handles=legend_elements, title="Taxonomic Level", loc="best")
 
     if output_format == 'pdf':
         pdf_filename = f"{os.path.splitext(data_file)[0]}_chart.pdf"
@@ -44,7 +49,7 @@ def main(input_path, output_format):
         process_file(input_path, output_format)
     elif os.path.isdir(input_path):
         # Directory containing multiple input files
-        for data_file in glob.glob(os.path.join(input_path, '*.txt')):
+        for data_file in glob.glob(os.path.join(input_path, '*centrifugeReport.txt')):
             process_file(data_file, output_format)
     else:
         print("Invalid input path. Please provide a valid file or directory path.")
@@ -53,7 +58,7 @@ def process_file(data_file, output_format):
     with open(data_file, "r") as d_in:
         create_pie_chart(
             taxRank_dict_2_count(taxRank_OTU_dict(d_in)),
-            category_colors,
+            legend_mapping,
             data_file,
             output_format
         )
@@ -65,7 +70,8 @@ if __name__ == "__main__":
     input_path = sys.argv[1]
     output_format = sys.argv[2]
     
-    category_colors = {
+    # Define the legend (label to color mapping)
+    legend_mapping = {
         'superkingdom': 'blue',
         'genus': 'green',
         'species': 'red',
@@ -79,3 +85,4 @@ if __name__ == "__main__":
     }
 
     main(input_path, output_format)
+
