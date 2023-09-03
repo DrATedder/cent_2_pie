@@ -3,6 +3,7 @@ A basic java GUI (utilising a python script to do the 'heavy' lifting) which tak
 
 <img src="https://github.com/DrATedder/cent_2_pie/blob/0d5f8986bd5fc03ea9f526701a23b9715d412bec/ERR1329867_fastp_trimmed_decon_centrifugeReport_chart.png" width=50% height=50%>
 
+For commandline only integration, use the python script `cent_out_2_pie_chart.py`
 
 ## Prerequisites
 
