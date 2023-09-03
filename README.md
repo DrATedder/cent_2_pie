@@ -28,8 +28,6 @@ Open a terminal or command prompt and navigate to the project directory.
 
 Run the Java application:
 
-    ```bash
-
     java -jar cent_2_pie.jar
 
 Use the Java application to select the input file or folder containing centrifuge data and choose the desired output format (PDF or PNG).
@@ -39,6 +37,7 @@ Click the "Generate Pie Chart" button to process the data and generate the pie c
 ### Author
 
 Dr. Andrew Tedder
+
 University of Bradford
 
 ### License
