@@ -18,7 +18,7 @@ Before using this application, ensure that you have the following prerequisites 
   ```bash
   pip install matplotlib
 
-Usage
+## Usage
 
     Clone or download this repository to your local machine.
 
