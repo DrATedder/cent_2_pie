@@ -16,9 +16,9 @@ Before using this application, ensure that you have the following prerequisites 
 - **Python Modules**: Install the required Python modules using `pip`:
 
   ```bash
-  pip install matplotlib```
+  pip install matplotlib
 
-# Usage
+Usage
 
     Clone or download this repository to your local machine.
 
@@ -26,7 +26,9 @@ Before using this application, ensure that you have the following prerequisites 
 
     Open a terminal or command prompt and navigate to the project directory.
 
-    Run the Java application (bash):
+    Run the Java application:
+
+    bash
 
     java -jar cent_2_pie.jar
 
@@ -38,4 +40,8 @@ Author
 
     Dr. Andrew Tedder
     University of Bradford
+
+License
+
+This project is licensed under the MIT License - see the LICENSE.txt file for details.
 
