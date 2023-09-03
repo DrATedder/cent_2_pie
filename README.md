@@ -28,20 +28,20 @@ Before using this application, ensure that you have the following prerequisites 
 
     Run the Java application:
 
-    bash
+    ```bash
 
     java -jar cent_2_pie.jar
 
-    Use the Java application to select the input file or folder containing centroid data and choose the desired output format (PDF or PNG).
+    Use the Java application to select the input file or folder containing centrifuge data and choose the desired output format (PDF or PNG).
 
     Click the "Generate Pie Chart" button to process the data and generate the pie chart.
 
-Author
+### Author
 
     Dr. Andrew Tedder
     University of Bradford
 
-License
+### License
 
 This project is licensed under the MIT License - see the LICENSE.txt file for details.
 
