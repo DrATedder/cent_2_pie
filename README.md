@@ -16,7 +16,7 @@ Before using this application, ensure that you have the following prerequisites 
 - **Python Modules**: Install the required Python modules using `pip`:
 
   ```bash
-  pip install matplotlib
+  pip install matplotlib```
 
 # Usage
 
