@@ -17,3 +17,25 @@ Before using this application, ensure that you have the following prerequisites 
 
   ```bash
   pip install matplotlib
+
+# Usage
+
+    Clone or download this repository to your local machine.
+
+    Ensure that you have the necessary prerequisites installed as mentioned above.
+
+    Open a terminal or command prompt and navigate to the project directory.
+
+    Run the Java application (bash):
+
+    java -jar cent_2_pie.jar
+
+    Use the Java application to select the input file or folder containing centroid data and choose the desired output format (PDF or PNG).
+
+    Click the "Generate Pie Chart" button to process the data and generate the pie chart.
+
+Author
+
+    Dr. Andrew Tedder
+    University of Bradford
+
