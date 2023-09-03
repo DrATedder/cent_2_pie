@@ -1,5 +1,5 @@
 # cent_2_pie
-A basic java GUI (utilising a python script to do the 'heavy' lifting) which takes in either a single centrifuge report (*_centrifugeReport.txt), or the location of a directory which contains n centrifuge reports. The programme generates a pie chart (either pdf or png, slected in app) per input file, which shows OTU frequency per taxonomic level (i.e. 'kingdom', 'family', 'genera', 'species' etc...). The resultant pie chart is likelt to be similar to the one shown below:
+A basic java GUI (utilising a python script to do the 'heavy' lifting) which takes in either a single centrifuge report (*_centrifugeReport.txt), or the location of a directory which contains n centrifuge reports. The programme generates a pie chart (either pdf or png, slected in app) per input file, which shows OTU frequency per taxonomic level (i.e. 'kingdom', 'family', 'genera', 'species' etc...). The resultant pie chart is likely to be similar to the one shown below:
 
 <img src="https://github.com/DrATedder/cent_2_pie/blob/0d5f8986bd5fc03ea9f526701a23b9715d412bec/ERR1329867_fastp_trimmed_decon_centrifugeReport_chart.png" width=50% height=50%>
 
