@@ -1,6 +1,7 @@
 import sys
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.table import Table
 import os
 import glob
 
@@ -21,15 +22,36 @@ def create_pie_chart(data_dict, color_mapping, data_file, output_format):
     values = list(data_dict.values())
     colors = [color_mapping[name] for name in names]
 
-    fig, ax = plt.subplots(figsize=(8, 8))
-    wedges, texts, autotexts = ax.pie(values, labels=[''] * len(names), autopct='%1.1f%%', startangle=140, colors=colors)
-    ax.axis('equal')
-    ax.set_title(f'Distribution of OTUs in {os.path.basename(data_file).split("_")[0]}')
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+
+    # Plot the pie chart and legend on the left
+    wedges, texts, autotexts = ax1.pie(values, labels=None, startangle=140, colors=colors, autopct='')
+
+    # Hide the percentage labels on the pie chart
+    for autotext in autotexts:
+        autotext.set_visible(False)
+    
+    ax1.axis('equal')
+    ax1.set_title(f'Distribution of OTUs in {os.path.basename(data_file).split("_")[0]}')
 
     # Create a legend using the legend mapping dictionary
     legend_elements = [plt.Line2D([0], [0], marker='o', color='w', label=label, markerfacecolor=color, markersize=10) for label, color in color_mapping.items()]
-    
-    ax.legend(handles=legend_elements, title="Taxonomic Level", loc="best")
+    ax1.legend(handles=legend_elements, title="Taxonomic Level", loc="upper left")
+
+    # Create a table to display taxonomic level and abundance on the right
+    cell_text = [['Taxonomic Level', 'Abundance (unique reads)']] + list(data_dict.items())
+    ax2.axis('off')
+    table = ax2.table(cellText=cell_text, loc='center', colWidths=[0.4, 0.4])
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.scale(1.5, 1.5)
+
+    # Add borders around subplots
+    for ax in [ax1, ax2]:
+        ax.spines['top'].set_visible(True)
+        ax.spines['bottom'].set_visible(True)
+        ax.spines['left'].set_visible(True)
+        ax.spines['right'].set_visible(True)
 
     if output_format == 'pdf':
         pdf_filename = f"{os.path.splitext(data_file)[0]}_chart.pdf"
@@ -50,7 +72,10 @@ def main(input_path, output_format):
     elif os.path.isdir(input_path):
         # Directory containing multiple input files
         for data_file in glob.glob(os.path.join(input_path, '*centrifugeReport.txt')):
-            process_file(data_file, output_format)
+            try:
+                process_file(data_file, output_format)
+            except Exception as e:
+                print(f"Error processing {data_file}: {str(e)}")
     else:
         print("Invalid input path. Please provide a valid file or directory path.")
 
@@ -85,4 +110,3 @@ if __name__ == "__main__":
     }
 
     main(input_path, output_format)
-
