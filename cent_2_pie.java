@@ -119,26 +119,21 @@ public class cent_2_pie {
                 String outputFormat = pdfRadioButton.isSelected() ? "pdf" : "png";
 
                 if (selectedPath != null && !selectedPath.isEmpty()) {
-                    try {
-                        // Run the Python script with the selected path and output format
-                        ProcessBuilder processBuilder = new ProcessBuilder("python", "cent_out_2_pie_chart.py", selectedPath, outputFormat);
-                        Process process = processBuilder.start();
-                        process.waitFor();  // Wait for the Python script to finish
-
-                        // Look for the chart file in the same location as the input file
-                        File input = new File(selectedPath);
-                        String chartFileName = input.getName().replaceFirst("[.][^.]+$", "_chart." + outputFormat);
-                        File chartFile = new File(input.getParent(), chartFileName);
-
-                        if (chartFile.exists()) {
-                            Desktop desktop = Desktop.getDesktop();
-                            desktop.open(chartFile);
-                            chartInfoTextArea.setText("Chart saved as: " + chartFile.getAbsolutePath());
-                        } else {
-                            chartInfoTextArea.setText("Chart file not found.");
+                    File selectedFile = new File(selectedPath);
+                    if (selectedFile.isFile()) {
+                        processFile(selectedFile, outputFormat);
+                    } else if (selectedFile.isDirectory()) {
+                        // Process all suitable files within the selected directory
+                        File[] files = selectedFile.listFiles();
+                        if (files != null) {
+                            for (File file : files) {
+                                if (file.isFile() && file.getName().endsWith("_centrifugeReport.txt")) {
+                                    processFile(file, outputFormat);
+                                }
+                            }
                         }
-                    } catch (IOException | InterruptedException ex) {
-                        ex.printStackTrace();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please select a valid input file or folder.");
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Please select a valid input file or folder.");
@@ -163,5 +158,26 @@ public class cent_2_pie {
 
         return bottomPanel;
     }
-}
 
+    // Method to process a single file
+    private static void processFile(File selectedFile, String outputFormat) {
+        try {
+            // Run the Python script with the selected path and output format
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "cent_out_2_pie_chart.py", selectedFile.getAbsolutePath(), outputFormat);
+            Process process = processBuilder.start();
+            process.waitFor();  // Wait for the Python script to finish
+
+            // Look for the chart file in the same location as the input file
+            String chartFileName = selectedFile.getName().replaceFirst("[.][^.]+$", "_chart." + outputFormat);
+            File chartFile = new File(selectedFile.getParent(), chartFileName);
+
+            if (chartFile.exists()) {
+                chartInfoTextArea.append("\nChart saved as: " + chartFile.getAbsolutePath());
+            } else {
+                chartInfoTextArea.append("\nChart file not found.");
+            }
+        } catch (IOException | InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
