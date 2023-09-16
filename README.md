@@ -5,6 +5,10 @@ A basic java GUI (utilising a python script to do the 'heavy' lifting) which tak
 
 For commandline only integration, use the python script `cent_out_2_pie_chart.py`
 
+## Appearance
+
+![Screenshot](https://github.com/DrATedder/centrifuge_decontamination/blob/3d5563b3284749bce953be784f425579392551de/decontamination_metadata_example.csv "Screenshot of cent_2_pie App")
+
 ## Prerequisites
 
 Before using this application, ensure that you have the following prerequisites installed on your system:
