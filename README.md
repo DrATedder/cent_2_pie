@@ -7,7 +7,7 @@ For commandline only integration, use the python script `cent_out_2_pie_chart.py
 
 ## Appearance
 
-![Screenshot](https://github.com/DrATedder/centrifuge_decontamination/blob/3d5563b3284749bce953be784f425579392551de/decontamination_metadata_example.csv "Screenshot of cent_2_pie App")
+![Screenshot](https://github.com/DrATedder/cent_2_pie/blob/bafa0c0599845033736c87df479d2da68544d139/cent_2_pie.png "Screenshot of cent_2_pie App")
 
 ## Prerequisites
 
